@@ -137,5 +137,5 @@ CORS_ALLOWED_ORIGINS = [
     "https://movie-search-application-fe65c9325b07.herokuapp.com"
 ]
 
-if os.getcwd() == '/app':
-    DEBUG = False
+# if os.getcwd() == '/app':
+#     DEBUG = False
