@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-w_2m9=5hg$6*q$b#)v7r1#vh+^g5=yq*7fm-zn!5)8^#zo_#z#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'movie-search-application-fe65c9325b07.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'movie-search-application-fe65c9325b07.herokuapp.com']
 
 
 # Application definition
@@ -122,7 +122,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -130,10 +131,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
-    "https://example.com",
-    "https://sub.example.com",
     "http://localhost:5173",
     "http://127.0.0.1:9000",
+    "https://movie-search-application-fe65c9325b07.herokuapp.com"
 ]
 
 if os.getcwd() == '/app':
