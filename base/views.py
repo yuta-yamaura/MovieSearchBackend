@@ -4,9 +4,12 @@ from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.response import Response
 import requests
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
+import environ
 # Create your views here.
 
-TMDB_API_KEY = '5236c086a277777d7410fd8aa38d04d5'
+env = environ.Env()
+env.read_env('.env')
+TMDB_API_KEY = env('TMDB_API_KEY')
 
 @api_view(['GET'])
 @renderer_classes((TemplateHTMLRenderer, JSONRenderer))
