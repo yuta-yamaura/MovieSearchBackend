@@ -41,7 +41,7 @@ INSTALLED_APPS = [
 
     'corsheaders',
     'rest_framework',
-    'base.apps.BaseConfig',
+    'movie_search.apps.MovieSearchConfig',
 ]
 
 MIDDLEWARE = [
