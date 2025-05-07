@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-w_2m9=5hg$6*q$b#)v7r1#vh+^g5=yq*7fm-zn!5)8^#zo_#z#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False if os.environ.get('DJANGO_ENV') == 'production' else True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'movie-search-application-fe65c9325b07.herokuapp.com']
 
@@ -62,7 +62,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'frontend/dist'),
+            os.path.join(BASE_DIR, 'frontend', 'dist'),
+            os.path.join(BASE_DIR, 'staticfiles'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -70,6 +71,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.debug',
             ],
         },
     },
@@ -121,10 +123,17 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'frontend', 'dist'),
+    os.path.join(BASE_DIR, 'frontend', 'dist', 'assets'),
+]
+
+# WhiteNoise configuration
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+WHITENOISE_ROOT = os.path.join(BASE_DIR, 'frontend', 'dist')
+WHITENOISE_INDEX_FILE = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -137,5 +146,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://movie-search-application-fe65c9325b07.herokuapp.com"
 ]
 
-if os.getcwd() == '/app':
-    DEBUG = False
+# Set CSRF_TRUSTED_ORIGINS for production
+CSRF_TRUSTED_ORIGINS = [
+    "https://movie-search-application-fe65c9325b07.herokuapp.com"
+]
