@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-w_2m9=5hg$6*q$b#)v7r1#vh+^g5=yq*7fm-zn!5)8^#zo_#z#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False if os.environ.get('DJANGO_ENV') == 'production' else True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'movie-search-application-fe65c9325b07.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'cinema-search-app-f3ef9bf9bc97.herokuapp.com']
 
 
 # Application definition
@@ -143,10 +143,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:9000",
-    "https://movie-search-application-fe65c9325b07.herokuapp.com"
+    "https://cinema-search-app-f3ef9bf9bc97.herokuapp.com"
 ]
 
 # Set CSRF_TRUSTED_ORIGINS for production
 CSRF_TRUSTED_ORIGINS = [
-    "https://movie-search-application-fe65c9325b07.herokuapp.com"
+    "https://cinema-search-app-f3ef9bf9bc97.herokuapp.com"
 ]
