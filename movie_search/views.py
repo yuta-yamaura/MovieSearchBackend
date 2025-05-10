@@ -31,6 +31,6 @@ def get_movie_details(request):
         })
     else:
         # 検索クエリがない場合は通常のdiscover/movieエンドポイントを使用
-        url = f'https://api.themoviedb.org/3/discover/movie?api_key={TMDB_API_KEY}&language=ja-JP&page={page}&primary_release_date.gte={year}-01-01&primary_release_date.lte={year}-12-31'
+        url = f'https://api.themoviedb.org/3/discover/movie?api_key={TMDB_API_KEY}&language=ja-JP&page={page}&primary_release_date.gte={year}-01-01&primary_release_date.lte={year}-12-31&sort_by=popularity.desc'
         response = requests.get(url)
         return Response(response.json())
