@@ -24,4 +24,18 @@ class MovieViewsTests(TestCase):
 
         # 有効な年数が指定された場合
         response = self.client.get(reverse('movie_list'), {'year': 2023})
+        data = response.json()
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn('results', data)
+        self.assertIn('page', data)
+        self.assertIn('total_pages', data)
+        self.assertIn('total_results', data)
+        
+        # 最初の映画データの構造を確認
+        if data['results']:
+            movie = data['results'][0]
+            self.assertIn('title', movie)
+            self.assertIn('release_date', movie)
+            self.assertIn('overview', movie)
+            self.assertIn('vote_average', movie)
+            self.assertIn('poster_path', movie)
